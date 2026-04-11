@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Website - About us</title>
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
@@ -33,7 +33,7 @@
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
                 <button class="btn">Get in touch</button>
             </div>
-            <img src="/img/Rectangle 6.png" alt="">
+            <img src="img/Rectangle 6.png" alt="">
         </div>
 
         <div class="container work">
@@ -84,7 +84,7 @@
     </footer>
 
     <script>
-        // Бургер-меню (такой же код, как на главной)
+        
         const burger = document.getElementById('burgerBtn');
         const nav = document.getElementById('mainNav');
 
@@ -105,7 +105,7 @@
                 if (nav.classList.contains('open')) closeMenu();
             });
         });
-        // Плавная прокрутка для якорей (если появятся)
+        
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const targetId = this.getAttribute('href');
@@ -117,7 +117,7 @@
                 }
             });
         });
-        // Выделение активного пункта
+        
         const currentPath = window.location.pathname;
         document.querySelectorAll('#mainNav ul li').forEach(item => {
             const link = item.querySelector('a');
