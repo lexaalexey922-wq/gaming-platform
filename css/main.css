@@ -100,7 +100,6 @@ header nav ul li.btn a:hover {
     transform: scale(1.05);
 }
 
-/* Бургер-кнопка */
 .burger {
     display: none;
     flex-direction: column;
@@ -207,7 +206,6 @@ header nav ul li.btn a:hover {
     margin-right: 7px;
 }
 
-/* Big text */
 .big-text{
     font-size: 35px;
     font-weight: 600;
@@ -236,9 +234,8 @@ header nav ul li.btn a:hover {
     margin-bottom: 30px;
 }
 
-/* Features */
 .features {
-    background: url(/img/background.png) no-repeat center center fixed;
+    background: url(img/background.png) no-repeat center center fixed;
     background-size: cover;
     padding: 80px 0;
 }
@@ -271,7 +268,7 @@ header nav ul li.btn a:hover {
     margin-bottom: 30px;
 }
 
-/* Projects */
+
 .projects {
     padding: 100px 0;
 }
@@ -312,7 +309,6 @@ header nav ul li.btn a:hover {
     transform: scale(1.1);
 }
 
-/* Email block */
 .email {
     padding-bottom: 120px;
 }
@@ -383,7 +379,6 @@ header nav ul li.btn a:hover {
     }
 }
 
-/* Страница о нас */
 .hero-about {
     position: relative;
 }
@@ -439,7 +434,6 @@ header nav ul li.btn a:hover {
 .work .blocks .block .badge.brown { background: #31190D; }
 .work .blocks .block .badge.green { background: #192A1D; }
 
-/* Страница контактов */
 .hero-contacts h1 {
     text-align: center;
     margin-top: 70px;
@@ -525,7 +519,6 @@ header nav ul li.btn a:hover {
     transform: scale(1.05);
 }
 
-/* Footer */
 footer {
     background: black;
     padding: 50px 0;
@@ -560,8 +553,6 @@ footer > p {
     text-align: center;
 }
 
-/* ========== АДАПТИВНОСТЬ (MEDIA QUERIES) ========== */
-/* Планшеты и маленькие десктопы */
 @media (max-width: 1200px) {
     .container {
         width: 100%;
@@ -589,7 +580,6 @@ footer > p {
     }
 }
 
-/* Мобильные устройства (до 768px) */
 @media (max-width: 768px) {
     .burger {
         display: flex;
@@ -689,7 +679,6 @@ footer > p {
     }
 }
 
-/* Очень маленькие телефоны */
 @media (max-width: 480px) {
     .features .info .block {
         width: 80%;
