@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Website - Contacts</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+    <header class="container">
+        <span class="logo">logo</span>
+        <div class="burger" id="burgerBtn">
+            <span></span><span></span><span></span>
+        </div>
+        <nav id="mainNav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about.html">About us</a></li>
+                <li><a href="/#features">Features</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">News</a></li>
+                <li class="btn active"><a href="/contacts.html">Contacts</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container hero-contacts">
+        <h1>Lorem Ipsum is simply dummy text of the printing and.</h1>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        <img src="/img/Huge Global.png" alt="">
+    </div>
+
+    <div class="feedback">
+        <div class="container">
+            <h2>Say hello</h2>
+            <p>Lorem Ipsum is simply dummy text of the printing .</p>
+
+            <form id="contactForm">
+                <div class="inline">
+                    <div>
+                        <label>First Name</label>
+                        <input type="text" id="firstName" required>
+                        <div class="error-message" id="firstNameError"></div>
+                    </div>
+                    <div>
+                        <label>Last Name</label>
+                        <input type="text" id="lastName" required>
+                        <div class="error-message" id="lastNameError"></div>
+                    </div>
+                </div>
+                <label>Email Address</label>
+                <input type="email" id="email" class="one-line" required>
+                <div class="error-message" id="emailError"></div>
+
+                <label>Message</label>
+                <textarea id="message" class="one-line" required></textarea>
+                <div class="error-message" id="messageError"></div>
+
+                <button type="submit">Get in touch</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="blocks container">
+            <div>
+                <span class="logo">logo</span>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+            </div>
+            <div>
+                <h4>About us</h4>
+                <ul>
+                    <li>Zeux</li>
+                    <li>Portfolio</li>
+                    <li>Careers</li>
+                    <li>Contact us</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact us</h4>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                <p>+908 89097 890</p>
+            </div>
+        </div>
+        <hr>
+        <p>Copyright ® 2021 Lorem All rights Rcerved</p>
+    </footer>
+
+    <script>
+        // Бургер-меню
+        const burger = document.getElementById('burgerBtn');
+        const nav = document.getElementById('mainNav');
+        function toggleMenu() { nav.classList.toggle('open'); document.body.classList.toggle('menu-open'); }
+        function closeMenu() { nav.classList.remove('open'); document.body.classList.remove('menu-open'); }
+        if (burger) burger.addEventListener('click', toggleMenu);
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && nav.classList.contains('open')) closeMenu(); });
+        document.querySelectorAll('#mainNav ul li a').forEach(link => {
+            link.addEventListener('click', function() { if (nav.classList.contains('open')) closeMenu(); });
+        });
+        // Плавная прокрутка
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) { e.preventDefault(); targetElement.scrollIntoView({ behavior: 'smooth' }); }
+            });
+        });
+        // Выделение активного пункта
+        const currentPath = window.location.pathname;
+        document.querySelectorAll('#mainNav ul li').forEach(item => {
+            const link = item.querySelector('a');
+            if (link && link.getAttribute('href') === currentPath) {
+                document.querySelectorAll('#mainNav ul li').forEach(li => li.classList.remove('active'));
+                item.classList.add('active');
+            }
+        });
+
+        // === Валидация формы на странице контактов ===
+        const form = document.getElementById('contactForm');
+        function showError(inputId, errorId, message) {
+            document.getElementById(errorId).innerText = message;
+            document.getElementById(inputId).style.border = '1px solid #ff4444';
+        }
+        function clearError(inputId, errorId) {
+            document.getElementById(errorId).innerText = '';
+            document.getElementById(inputId).style.border = '';
+        }
+        function validateEmail(email) {
+            return email.includes('@') && email.includes('.');
+        }
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let isValid = true;
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (firstName === '') {
+                showError('firstName', 'firstNameError', 'First name is required');
+                isValid = false;
+            } else { clearError('firstName', 'firstNameError'); }
+
+            if (lastName === '') {
+                showError('lastName', 'lastNameError', 'Last name is required');
+                isValid = false;
+            } else { clearError('lastName', 'lastNameError'); }
+
+            if (email === '') {
+                showError('email', 'emailError', 'Email is required');
+                isValid = false;
+            } else if (!validateEmail(email)) {
+                showError('email', 'emailError', 'Please enter a valid email (with @ and .)');
+                isValid = false;
+            } else { clearError('email', 'emailError'); }
+
+            if (message === '') {
+                showError('message', 'messageError', 'Message cannot be empty');
+                isValid = false;
+            } else { clearError('message', 'messageError'); }
+
+            if (isValid) {
+                alert('Form sent successfully! (demo)');
+                form.reset();
+            }
+        });
+    </script>
+</body>
+
+</html>
