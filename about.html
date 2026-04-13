@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="public, max-age=31536000">
     <title>Game Website - About us</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
@@ -11,14 +12,14 @@
 <body>
     <div class="wrapper">
         <header class="container">
-            <span class="logo">logo</span>
-            <div class="burger" id="burgerBtn">
+            <span class="logo" aria-label="Логотип">logo</span>
+            <div class="burger" id="burgerBtn" aria-label="Меню" role="button" tabindex="0">
                 <span></span><span></span><span></span>
             </div>
             <nav id="mainNav">
                 <ul>
                     <li><a href="/gaming-platform/index.html">Home</a></li>
-                    <li><a href="/gaming-platform/about.html">About us</a></li>
+                    <li class="active"><a href="/gaming-platform/about.html">About us</a></li>
                     <li><a href="/gaming-platform/#features">Features</a></li>
                     <li><a href="#">Portfolio</a></li>
                     <li><a href="#">News</a></li>
@@ -31,9 +32,9 @@
             <div class="info">
                 <h1>Lorem Ipsum is simply dummy text of the printing and.</h1>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-                <button class="btn">Get in touch</button>
+                <button class="btn" aria-label="Get in touch">Get in touch</button>
             </div>
-            <img src="img/Rectangle 6.png" alt="">
+            <img src="img/Rectangle 6.png" alt="About us illustration" loading="lazy">
         </div>
 
         <div class="container work">
@@ -61,7 +62,7 @@
     <footer>
         <div class="blocks container">
             <div>
-                <span class="logo">logo</span>
+                <span class="logo" aria-label="Логотип">logo</span>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
             </div>
             <div>
@@ -84,47 +85,23 @@
     </footer>
 
     <script>
-        
         const burger = document.getElementById('burgerBtn');
         const nav = document.getElementById('mainNav');
-
-        function toggleMenu() {
-            nav.classList.toggle('open');
-            document.body.classList.toggle('menu-open');
-        }
-        function closeMenu() {
-            nav.classList.remove('open');
-            document.body.classList.remove('menu-open');
-        }
+        function toggleMenu() { nav.classList.toggle('open'); document.body.classList.toggle('menu-open'); }
+        function closeMenu() { nav.classList.remove('open'); document.body.classList.remove('menu-open'); }
         if (burger) burger.addEventListener('click', toggleMenu);
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && nav.classList.contains('open')) closeMenu();
-        });
+        burger.addEventListener('keydown', function(e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMenu(); } });
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && nav.classList.contains('open')) closeMenu(); });
         document.querySelectorAll('#mainNav ul li a').forEach(link => {
-            link.addEventListener('click', function() {
-                if (nav.classList.contains('open')) closeMenu();
-            });
+            link.addEventListener('click', function() { if (nav.classList.contains('open')) closeMenu(); });
         });
-        
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const targetId = this.getAttribute('href');
                 if (targetId === '#') return;
                 const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    e.preventDefault();
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                }
+                if (targetElement) { e.preventDefault(); targetElement.scrollIntoView({ behavior: 'smooth' }); }
             });
-        });
-        
-        const currentPath = window.location.pathname;
-        document.querySelectorAll('#mainNav ul li').forEach(item => {
-            const link = item.querySelector('a');
-            if (link && link.getAttribute('href') === currentPath) {
-                document.querySelectorAll('#mainNav ul li').forEach(li => li.classList.remove('active'));
-                item.classList.add('active');
-            }
         });
     </script>
 </body>
