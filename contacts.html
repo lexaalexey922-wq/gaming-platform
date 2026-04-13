@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="public, max-age=31536000">
     <title>Game Website - Contacts</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
     <header class="container">
-        <span class="logo">logo</span>
-        <div class="burger" id="burgerBtn">
+        <span class="logo" aria-label="Логотип">logo</span>
+        <div class="burger" id="burgerBtn" aria-label="Меню" role="button" tabindex="0">
             <span></span><span></span><span></span>
         </div>
         <nav id="mainNav">
@@ -21,7 +22,7 @@
                 <li><a href="/gaming-platform/#features">Features</a></li>
                 <li><a href="#">Portfolio</a></li>
                 <li><a href="#">News</a></li>
-                <li class="btn"><a href="/gaming-platform/contacts.html">Contacts</a></li>
+                <li class="btn active"><a href="/gaming-platform/contacts.html">Contacts</a></li>
             </ul>
         </nav>
     </header>
@@ -29,7 +30,7 @@
     <div class="container hero-contacts">
         <h1>Lorem Ipsum is simply dummy text of the printing and.</h1>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-        <img src="img/Huge Global.png" alt="">
+        <img src="img/Huge Global.png" alt="Global map illustration" loading="lazy">
     </div>
 
     <div class="feedback">
@@ -41,24 +42,24 @@
                 <div class="inline">
                     <div>
                         <label>First Name</label>
-                        <input type="text" id="firstName" required>
+                        <input type="text" id="firstName" required aria-label="First Name">
                         <div class="error-message" id="firstNameError"></div>
                     </div>
                     <div>
                         <label>Last Name</label>
-                        <input type="text" id="lastName" required>
+                        <input type="text" id="lastName" required aria-label="Last Name">
                         <div class="error-message" id="lastNameError"></div>
                     </div>
                 </div>
                 <label>Email Address</label>
-                <input type="email" id="email" class="one-line" required>
+                <input type="email" id="email" class="one-line" required aria-label="Email Address">
                 <div class="error-message" id="emailError"></div>
 
                 <label>Message</label>
-                <textarea id="message" class="one-line" required></textarea>
+                <textarea id="message" class="one-line" required aria-label="Message"></textarea>
                 <div class="error-message" id="messageError"></div>
 
-                <button type="submit">Get in touch</button>
+                <button type="submit" aria-label="Send message">Get in touch</button>
             </form>
         </div>
     </div>
@@ -66,7 +67,7 @@
     <footer>
         <div class="blocks container">
             <div>
-                <span class="logo">logo</span>
+                <span class="logo" aria-label="Логотип">logo</span>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
             </div>
             <div>
@@ -89,17 +90,16 @@
     </footer>
 
     <script>
-        
         const burger = document.getElementById('burgerBtn');
         const nav = document.getElementById('mainNav');
         function toggleMenu() { nav.classList.toggle('open'); document.body.classList.toggle('menu-open'); }
         function closeMenu() { nav.classList.remove('open'); document.body.classList.remove('menu-open'); }
         if (burger) burger.addEventListener('click', toggleMenu);
+        burger.addEventListener('keydown', function(e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMenu(); } });
         document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && nav.classList.contains('open')) closeMenu(); });
         document.querySelectorAll('#mainNav ul li a').forEach(link => {
             link.addEventListener('click', function() { if (nav.classList.contains('open')) closeMenu(); });
         });
-        
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const targetId = this.getAttribute('href');
@@ -108,17 +108,7 @@
                 if (targetElement) { e.preventDefault(); targetElement.scrollIntoView({ behavior: 'smooth' }); }
             });
         });
-        
-        const currentPath = window.location.pathname;
-        document.querySelectorAll('#mainNav ul li').forEach(item => {
-            const link = item.querySelector('a');
-            if (link && link.getAttribute('href') === currentPath) {
-                document.querySelectorAll('#mainNav ul li').forEach(li => li.classList.remove('active'));
-                item.classList.add('active');
-            }
-        });
 
-        
         const form = document.getElementById('contactForm');
         function showError(inputId, errorId, message) {
             document.getElementById(errorId).innerText = message;
